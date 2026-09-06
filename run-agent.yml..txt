@@ -20,8 +20,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm cache clean --force
           npm install
+          # الدخول لحزمة المشروع وبنائها لتوليد ملف dist/index.js المفقود
+          cd node_modules/@flop-labs/tclk && npm install && npm run build || true
+          cd ../../
 
       - name: Execute Ghost Agent
         run: node ghost-agent.js
