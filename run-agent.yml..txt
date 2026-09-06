@@ -2,30 +2,24 @@ name: Run Technocore Ghost Agent
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 * * * *'
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout repository code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install Dependencies
-        run: |
-          npm install
-          # الدخول لحزمة المشروع وبنائها لتوليد ملف dist/index.js المفقود
-          cd node_modules/@flop-labs/tclk && npm install && npm run build || true
-          cd ../../
+      - name: Install Node Modules
+        run: npm install
 
-      - name: Execute Ghost Agent
+      - name: Execute Ghost Agent Main Script
         run: node ghost-agent.js
         env:
           TECHNOCORE_URL: https://technocore.chat
