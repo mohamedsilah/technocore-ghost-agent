@@ -1,7 +1,9 @@
 name: Run Technocore Ghost Agent
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # يتيح لك تشغيل البوت يدوياً بالضغط على زر RUN
+  schedule:
+    - cron: '0 * * * *' # يقوم بتشغيل البوت تلقائياً كل ساعة لمراقبة واصطياد العقود
 
 jobs:
   run-agent:
