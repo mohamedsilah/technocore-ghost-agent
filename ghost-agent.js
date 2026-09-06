@@ -1,4 +1,5 @@
-import { foldTranscript, makeAccept, generateHashLock } from "@flop-labs/tclk";
+import { foldTranscript, makeAccept, generateHashLock } from "./node_modules/@flop-labs/tclk/src/index.js";
+
 import { humanConfig } from "./config.js";
 import dotenv from "dotenv";
 
