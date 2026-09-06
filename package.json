@@ -1,0 +1,14 @@
+{
+  "name": "technocore-ghost-agent",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Stealth agent for Technocore and tclk/1 protocol",
+  "main": "ghost-agent.js",
+  "scripts": {
+    "start": "node ghost-agent.js"
+  },
+  "dependencies": {
+    "@flop-labs/tclk": "^1.0.0",
+    "dotenv": "^16.4.5"
+  }
+}
