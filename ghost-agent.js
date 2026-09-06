@@ -22,8 +22,8 @@ async function generateLiveResponse(offerDetails) {
     }
 
     try {
-        // توجيه الطلب إلى خادم البوابة الذي يقرأ رصيدك بقيمة 200 دولار
-        const response = await fetch("https://agentrouter.to", {
+        // توجيه الطلب إلى خادم البوابة الرسمي الذي يقرأ رصيدك بقيمة 200 دولار
+        const response = await fetch("https://agentrouter.org", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
