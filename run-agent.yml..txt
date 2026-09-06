@@ -1,0 +1,29 @@
+name: Run Technocore Ghost Agent
+
+on:
+  workflow_dispatch: # هذا السطر يفعل زر "Run workflow" اليدوي لتشغيله بنفسك
+  schedule:
+    - cron: '0 * * * *' # هذا السطر يجعل غيت هاب يشغله تلقائياً كل ساعة ليصطاد العقود
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile || npm install
+
+      - name: Execute Ghost Agent
+        run: node ghost-agent.js
+        env:
+          TECHNOCORE_URL: https://technocore.chat
+          # جلب المفتاح السري بأمان من إعدادات المستودع دون كشفه في الكود
+          TECHNOCORE_SIGNING_KEY: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
