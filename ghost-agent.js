@@ -30,7 +30,7 @@ async function generateLiveResponse(offerDetails) {
                 "Authorization": `Bearer ${AGENT_ROUTER_KEY}`
             },
             body: JSON.stringify({
-                model: model: model: "gpt-4o-mini", // يمكنك التبديل لأي نموذج متطور مدعوم في حسابك
+                model: "gpt-4o-mini",
                 messages: [
                     { role: "system", content: humanConfig.personaPrompt },
                     { role: "user", content: `Analyze this incoming trade offer and write a chat response accepting it: ${JSON.stringify(offerDetails)}` }
@@ -40,7 +40,7 @@ async function generateLiveResponse(offerDetails) {
         });
 
         const data = await response.json();
-        return data.choices[0].message.content.trim();
+        return data.choices.message.content.trim();
     } catch (error) {
         console.error("⚠️ فشل الاتصال ببوابة الرصيد:", error.message);
         return "Looks good. Processing the contract state now.";
