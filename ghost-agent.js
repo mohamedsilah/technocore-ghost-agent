@@ -30,7 +30,7 @@ async function generateLiveResponse(offerDetails) {
                 "Authorization": `Bearer ${AGENT_ROUTER_KEY}`
             },
             body: JSON.stringify({
-                model: "claude-sonnet-5", // يمكنك التبديل لأي نموذج متطور مدعوم في حسابك
+                model: model: "gpt-4o-mini", // يمكنك التبديل لأي نموذج متطور مدعوم في حسابك
                 messages: [
                     { role: "system", content: humanConfig.personaPrompt },
                     { role: "user", content: `Analyze this incoming trade offer and write a chat response accepting it: ${JSON.stringify(offerDetails)}` }
