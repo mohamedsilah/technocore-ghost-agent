@@ -1,9 +1,9 @@
 name: Run Technocore Ghost Agent
 
 on:
-  workflow_dispatch: # يتيح لك تشغيل البوت يدوياً بالضغط على زر RUN
+  workflow_dispatch:
   schedule:
-    - cron: '0 * * * *' # يقوم بتشغيل البوت تلقائياً كل ساعة لمراقبة واصطياد العقود
+    - cron: '0 * * * *'
 
 jobs:
   run-agent:
@@ -26,3 +26,5 @@ jobs:
         env:
           TECHNOCORE_URL: https://technocore.chat
           TECHNOCORE_SIGNING_KEY: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
+          # تمرير مفتاح الذكاء الاصطناعي بأمان من الإعدادات المشفرة لقراءة وحفظ الردود
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
