@@ -1,11 +1,10 @@
 import crypto from 'crypto';
 
-// دالة تفكيك وفرز المعاملات داخل غرف الدردشة لتجنب المكرر والخاطئ
+// فرز المعاملات وبناء حالة العقد المالي المتوافق مع شبكة FLOP
 export function foldTranscript(messages) {
     const contracts = {};
     if (!Array.isArray(messages)) return contracts;
     
-    // فرز الرسائل التنسيقية وبناء حالة العقد المالي
     for (const msg of messages) {
         if (msg && msg.frame && msg.frame.id) {
             const f = msg.frame;
@@ -22,14 +21,12 @@ export function foldTranscript(messages) {
     return contracts;
 }
 
-// دالة توليد القفل والتوقيع المشفر السري محلياً
 export function generateHashLock() {
     const preimage = crypto.randomBytes(32).toString('hex');
     const hash = crypto.createHash('sha256').update(Buffer.from(preimage, 'hex')).digest('hex');
     return { preimage, hash };
 }
 
-// دالة بناء فريم القبول الرسمي المالي tclk/1
 export function makeAccept(offerFrame, options) {
     return {
         id: offerFrame.id,
@@ -38,4 +35,16 @@ export function makeAccept(offerFrame, options) {
         statement: options.statement,
         timestamp: Date.now()
     };
+}
+
+// 🌐 إضافة دالة مصفوفة جلب ومراقبة كروت الشاشة المتاحة حالياً بناءً على gpus.flop.finance
+export function getLiveGPUMetrics() {
+    const gpuInventory = [
+        { model: "NVIDIA H100", rentPerHour: "$2.10", efficiencyScore: "98%" },
+        { model: "NVIDIA A100", rentPerHour: "$1.25", efficiencyScore: "89%" },
+        { model: "RTX 4090", rentPerHour: "$0.44", efficiencyScore: "76%" },
+        { model: "RTX 3090", rentPerHour: "$0.22", efficiencyScore: "55%" }
+    ];
+    // اختيار عشوائي لمحاكاة القراءة الحية من السيرفر
+    return gpuInventory[Math.floor(Math.random() * gpuInventory.length)];
 }
