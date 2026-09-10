@@ -17,12 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          # تم إزالة سطر الكاش لحل مشكلة عدم وجود ملف lock
 
       - name: Install dependencies
-        run: npm install  # تم التعديل إلى install عادية لتوليد الحزم تلقائياً
+        run: npm install
 
       - name: Run Ghost Agent Main Script
         env:
           FLOP_PRIVATE_KEY: ${{ secrets.FLOP_PRIVATE_KEY }}
-        run: node src/agent.js
+        run: node ghost-agent.js  # تم تعديل اسم الملف هنا ليتطابق مع مستودعك تماماً
