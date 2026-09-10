@@ -2,34 +2,27 @@ name: Run Technocore Ghost Agent
 
 on:
   schedule:
-    # يشتغل السكربت تلقائياً كل ساعة (يمكنك تعديل الجدولة حسب رغبتك)
     - cron: '0 * * * *'
   workflow_dispatch:
-    # يتيح لك تشغيل السكربت يدوياً بنقرة زر في أي وقت
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
 
     steps:
-      # الخطوة 1: سحب الكود الأحدث من مستودعك باستخدام v4
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # الخطوة 2: تهيئة بيئة Node.js 24 لحل مشكلة التحذير والاعتمادية
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'npm' # يساعد في تسريع تشغيل السكربت عبر حفظ الكاش
+          # تم إزالة سطر الكاش لحل مشكلة عدم وجود ملف lock
 
-      # الخطوة 3: تثبيت الحزم والمكتبات اللازمة لبروتوكول TCLK والشبكة
       - name: Install dependencies
-        run: npm ci
+        run: npm install  # تم التعديل إلى install عادية لتوليد الحزم تلقائياً
 
-      # الخطوة 4: تشغيل الوكيل الذكي وحصد النقاط لحسابك بأمان
       - name: Run Ghost Agent Main Script
         env:
-          # هنا يتم تمرير السيكرت المحمي الخاص بك بشكل آمن تلقائياً
           FLOP_PRIVATE_KEY: ${{ secrets.FLOP_PRIVATE_KEY }}
         run: node src/agent.js
