@@ -1,4 +1,4 @@
-const tclk = require('@flop-labs/tclk');
+import tclk from '@flop-labs/tclk';
 
 async function getPoints() {
     const myDID = "did:key:z6Mkvca4sCpn6pK6Xs7KfnGSoxC7h9XdyqL8HS15JtParuqA";
