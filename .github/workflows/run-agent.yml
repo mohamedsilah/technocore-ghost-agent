@@ -26,6 +26,6 @@ jobs:
           FLOP_PRIVATE_KEY: ${{ secrets.FLOP_PRIVATE_KEY }}
         run: node ghost-agent.js
 
-      # الخطوة الإضافية الجديدة لطباعة إجمالي أرباحك تلقائياً في السجلات
+      # تشغيل خطوة فحص الرصيد باستدعاء متوافق وآمن
       - name: Check Total Earned Points
         run: node check-balance.js
