@@ -1,5 +1,6 @@
 {
   "name": "flop-advanced-miner",
+  "type": "module",
   "version": "1.0.0",
   "description": "Advanced H100 Node Miner for FLOP Network",
   "main": "index.js",
