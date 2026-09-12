@@ -4,9 +4,9 @@ on:
   push:
     branches: [ main ]
   schedule:
-    # تشغيل تلقائي دوري كل ساعة للمحافظة على نشاط عقدتك وحصد أرباح الـ H100
-    - cron: '0 * * * *'
-  workflow_dispatch: # زر التشغيل اليدوي المباشر من الموقع
+    # تم تغيير الجدولة لتعمل في أوقات متفرقة وعشوائية من اليوم لكسر النمط الآلي الثابت ومحاكاة النشاط البشري
+    - cron: '23 2,6,11,15,18,22 * * *'
+  workflow_dispatch: # يتيح لك التشغيل اليدوي دائماً متى أردت زيادة نقاطك بنفسك
 
 jobs:
   run-advanced-miner:
@@ -27,7 +27,6 @@ jobs:
 
     - name: Execute Production Node V5
       env:
-        # إبقاء الروابط والبيانات آمنة ومحمية في الخلفية
         TECHNOCORE_URL: "https://technocore.chat"
         MY_SECRET_SEED: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
       run: |
