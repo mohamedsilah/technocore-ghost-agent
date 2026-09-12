@@ -1,5 +1,4 @@
-# Technocore Stealth Agent ($FLOP & $FLOPPY Bridge)
-
+# Technocore Stealth Agent ($FLOP)
 An advanced autonomous agent designed to interface with the Technocore chat infrastructure and execute decentralized contracts using the `tclk/1` protocol natively.
 
 ## 🕵️‍♂️ Stealth & Anti-Sybil Architecture
