@@ -4,9 +4,8 @@ on:
   push:
     branches: [ main ]
   schedule:
-    # تشغيل تلقائي كل ساعة للحفاظ على استمرار العقدة في جلب أرباح الـ H100
     - cron: '0 * * * *'
-  workflow_dispatch: # زر التشغيل اليدوي المباشر
+  workflow_dispatch: 
 
 jobs:
   run-advanced-miner:
@@ -20,17 +19,20 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        # تم إزالة سطر الكاش لحل مشكلة توقف السكربت نهائياً
 
     - name: Install Project Dependencies
       run: |
         npm install
         npm install dotenv
 
-    - name: Execute Script 2 Layer (Advanced Mining & Contract Sync)
+    - name: Force Script 2 H100 Compliance & Stealth Cooling
       env:
         TECHNOCORE_URL: "https://technocore.chat"
         TECHNOCORE_SIGNING_KEY: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
+        # فرض تفعيل وضع مالك العقدة الرسمي باللغة الإنجليزية وعقود الـ H100
+        NODE_ENV: "production"
+        MINER_TARGET: "H100"
       run: |
-        echo "Initializing Advanced Node Execution with Stealth Cooling..."
-        npm start
+        echo "Forcing Official FLOP.FINANCE Live Report & Compliance Metrics..."
+        # تشغيل ملف إعدادات التكوين والربط المتقدم لتأمين العقود المتتالية
+        node config.js && node tclk-core.js
