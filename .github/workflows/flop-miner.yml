@@ -1,0 +1,38 @@
+name: Run Advanced FLOP Miner (Script 2 Optimization)
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # تشغيل تلقائي كل ساعة للحفاظ على استمرار العقدة في جلب أرباح الـ H100
+    - cron: '0 * * * *'
+  workflow_dispatch: # زر التشغيل اليدوي المباشر
+
+jobs:
+  run-advanced-miner:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Project Dependencies
+      run: |
+        npm install
+        npm install dotenv
+
+    - name: Execute Script 2 Layer (Advanced Mining & Contract Sync)
+      env:
+        TECHNOCORE_URL: "https://technocore.chat"
+        # هذا المفتاح ضروري لتفعيل سطر [HANDSHAKE SUCCESS] ومزامنة الهوية المشفرة
+        TECHNOCORE_SIGNING_KEY: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
+      run: |
+        echo "Initializing Advanced Node Execution with Stealth Cooling..."
+        # تشغيل الأمر الرئيسي لتفعيل بروتوكول العقود ومحاكاة السكربت الثاني
+        npm start
