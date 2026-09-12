@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
+        # تم إزالة سطر الكاش لحل مشكلة توقف السكربت نهائياً
 
     - name: Install Project Dependencies
       run: |
@@ -30,9 +30,7 @@ jobs:
     - name: Execute Script 2 Layer (Advanced Mining & Contract Sync)
       env:
         TECHNOCORE_URL: "https://technocore.chat"
-        # هذا المفتاح ضروري لتفعيل سطر [HANDSHAKE SUCCESS] ومزامنة الهوية المشفرة
         TECHNOCORE_SIGNING_KEY: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
       run: |
         echo "Initializing Advanced Node Execution with Stealth Cooling..."
-        # تشغيل الأمر الرئيسي لتفعيل بروتوكول العقود ومحاكاة السكربت الثاني
         npm start
