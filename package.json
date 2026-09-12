@@ -1,0 +1,14 @@
+{
+  "name": "flop-advanced-miner",
+  "version": "1.0.0",
+  "description": "Advanced H100 Node Miner for FLOP Network",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "author": "1mmb78",
+  "license": "MIT"
+}
