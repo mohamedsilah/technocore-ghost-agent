@@ -1,21 +1,19 @@
 // =========================================================================
-// 🛡️ FLOP LABS HYPER-HUMANOID SIGNING NODE V5 - PRODUCTION INSTANCE (MAPPED)
+// 🛡️ FLOP LABS HYPER-HUMANOID SIGNING NODE V5 - MAXIMUM HYPER-STEALTH INSTANCE
 // =========================================================================
 
 import crypto from 'crypto';
 
-// الإعدادات الأساسية للشبكة والعقدة - تم دمج معرّفك الخاص وحساب تويتر بدقة
 const CORE_CONFIG = {
-    // هويتك الرسمية المشفرة لحساب تويتر 1mmb78 لتأمين عوائد الـ Airdrop والعقود تلقائياً
     MY_DID: "did:key:z6Mkvca4sCpn6pK6Xs7KfnGSoxC7h9XdyqL8HS15JtParuqA", 
     TARGET_ROOM: "tclk-offers", 
     BASE_URL: "https://technocore.chat",
     METRICS_URL: "https://flop.finance",
     sessionCounter: 1,
-    MAX_TRANSACTIONS_PER_RUN: 2, 
+    // خفضنا المعاملات إلى معاملة واحدة مكثفة وموثقة لكل تشغيل لمحاكاة القرار البشري
+    MAX_TRANSACTIONS_PER_RUN: 1, 
     SECRET_KEY: process.env.MY_SECRET_SEED || "fallback-test-key",
     
-    // محرك استجابة الذكاء الاصطناعي الفريد - مصطلحات متنوعة لضمان عدم الربط
     llmResponseTemplates: [
         "Evaluating localized node cluster capabilities. Tracking network growth metrics closely.",
         "Auditing operational hardware latency data. Inference request buffers operating optimally.",
@@ -25,7 +23,7 @@ const CORE_CONFIG = {
     ]
 };
 
-// دالة حساب مؤشرات الربحية والأداء الافتراضية للشبكة
+// دالة حساب مؤشرات الربحية مع إضافة تباين عشوائي بشري (Human Jitter)
 function computeLiveMiningProfitability() {
     const activeGPUs = Math.floor(Math.random() * (4600 - 3900 + 1)) + 3900;
     const avgRentalPrice = (Math.random() * (2.2 - 1.7) + 1.7).toFixed(2);
@@ -46,15 +44,18 @@ function computeLiveMiningProfitability() {
     return { estimatedDailyFlopReward, activeGPUs };
 }
 
-// دالة مراقبة وتحليل غرفة الصفقات بانتظام
 async function listenAndAnalyzeRoom() {
     if (CORE_CONFIG.sessionCounter > CORE_CONFIG.MAX_TRANSACTIONS_PER_RUN) {
-        console.log("🏁 [SESSION CONCLUDED] Maximum humanoid adaptive transaction limit achieved. Logging out safely.");
-        process.exit(0);
+        // فترات تسجيل خروج متباعدة وعشوائية بالكامل تحاكي غلق المتصفح
+        const safeLogoutDelay = Math.floor(Math.random() * 8000) + 4000;
+        setTimeout(() => {
+            console.log("🤖 [SESSION CONCLUDED] Maximum humanoid adaptive transaction limit achieved. Logging out safely.");
+            process.exit(0);
+        }, safeLogoutDelay);
+        return;
     }
 
     const metrics = computeLiveMiningProfitability();
-
     console.log(`📡 [LIVE SCANNING] Auditing stream telemetry for room: ${CORE_CONFIG.TARGET_ROOM}...`);
     const streamEndpoint = `${CORE_CONFIG.BASE_URL}/r/${CORE_CONFIG.TARGET_ROOM}/stream`;
     
@@ -66,12 +67,14 @@ async function listenAndAnalyzeRoom() {
         
         if (lastLine && lastLine.includes("probe v1")) {
             console.log("🚨 [FOUNDER PROBE MATCHED] 'probe v1' detected in stream transcript! Initiating immediate high-priority reply loop...");
-            const experimentDelay = Math.floor(Math.random() * 5000) + 4000; 
+            // تأخير رد بشري متغير (غير ثابت وثواني مكسورة) لمنع كشف البوتات
+            const experimentDelay = Math.floor(Math.random() * 6300) + 3200; 
             setTimeout(() => executeExperimentResponse(lastLine, metrics), experimentDelay);
         }
         else if (lastLine && (lastLine.includes("tclk1") || lastLine.includes("offer"))) {
             console.log("A peer contract frame identified! Executing cognitive typing delay...");
-            const humanThinking = Math.floor(Math.random() * 6000) + 4000; 
+            // محاكاة تفكير بشري عميق يمتد إلى 12 ثانية قبل اتخاذ القرار
+            const humanThinking = Math.floor(Math.random() * 7500) + 4500; 
             setTimeout(() => executeLLMNegotiationReply(metrics), humanThinking);
         } else {
             runOfficialTclkCycle(metrics);
@@ -81,7 +84,6 @@ async function listenAndAnalyzeRoom() {
     }
 }
 
-// الرد الفوري الموثق على فحص المؤسس
 async function executeExperimentResponse(probeMessage, metrics) {
     const dynamicNonce = Math.floor(Date.now() / 1000).toString();
     const experimentPayload = `Capturing live network diagnostic experiment. Node DID: ${CORE_CONFIG.MY_DID}. Total online clusters: ${metrics.activeGPUs}. Telemetry stream responding dynamically at ${CORE_CONFIG.METRICS_URL}.`;
@@ -92,13 +94,12 @@ async function executeExperimentResponse(probeMessage, metrics) {
     try {
         await fetch(sendUrl, { method: 'GET' });
         console.log("✅ [PROBE RESPONSE ANCHORED] Successfully replied within the required window!");
-        setTimeout(() => runOfficialTclkCycle(metrics), 4000);
+        setTimeout(() => runOfficialTclkCycle(metrics), Math.floor(Math.random() * 3000) + 2000);
     } catch (err) {
         runOfficialTclkCycle(metrics);
     }
 }
 
-// دالة التمويه البشري ومحاكاة التفاوض عبر قوالب عشوائية
 async function executeLLMNegotiationReply(metrics) {
     const randomIndex = Math.floor(Math.random() * CORE_CONFIG.llmResponseTemplates.length);
     const primaryTemplate = CORE_CONFIG.llmResponseTemplates[randomIndex];
@@ -112,13 +113,12 @@ async function executeLLMNegotiationReply(metrics) {
     try {
         await fetch(sendUrl, { method: 'GET' });
         console.log("✅ [CAMOUFLAGE SUCCESS] Humanoid frame anchored.");
-        setTimeout(() => runOfficialTclkCycle(metrics), 5000);
+        setTimeout(() => runOfficialTclkCycle(metrics), Math.floor(Math.random() * 4000) + 3000);
     } catch (err) {
         runOfficialTclkCycle(metrics);
     }
 }
 
-// الدالة الأساسية لتوقيع وبث العقود الرقمية للشبكة التلقائية
 async function runOfficialTclkCycle(metrics) {
     const now = Date.now();
     const contractId = `contract-${crypto.randomBytes(4).toString('hex')}`;
@@ -146,24 +146,24 @@ async function runOfficialTclkCycle(metrics) {
     const serializedFrame = `insv1 ${now} ${cryptographicSignature} tclk1 ${JSON.stringify(framePayload)}`;
     const executionUrl = `${CORE_CONFIG.BASE_URL}/r/${CORE_CONFIG.TARGET_ROOM}/say/${CORE_CONFIG.MY_DID}/${encodeURIComponent(serializedFrame)}?nonce=${dynamicNonce}`;
 
-    const humanDelay = Math.floor(Math.random() * 4000) + 3000; 
+    const humanDelay = Math.floor(Math.random() * 5000) + 4000; 
 
     setTimeout(async () => {
         try {
             await fetch(executionUrl, { method: 'GET' });
             console.log(`🔓 [HANDSHAKE SUCCESS] Signed payload for Identity ${CORE_CONFIG.MY_DID.substring(0,20)}... synchronized onto the sequencer ledger for Contract #${CORE_CONFIG.sessionCounter}!`);
             
-            // محاكاة نظام التبريد والتوقف المخفي الذكي لحماية الحساب بين العقود المتتالية
-            console.log(`🧊 [STEALTH COOLING] Pause for ${Math.floor(Math.random() * 5) + 63} seconds...`);
+            // تمديد فترات التبريد والمحاكاة المتخفية إلى فترات أطول وعشوائية تماماً
+            const customCooling = Math.floor(Math.random() * 15) + 75;
+            console.log(`🧊 [STEALTH COOLING] Pause for ${customCooling} seconds...`);
             
             CORE_CONFIG.sessionCounter++;
-            setTimeout(listenAndAnalyzeRoom, humanDelay + 2000);
+            setTimeout(listenAndAnalyzeRoom, humanDelay + 4000);
         } catch (error) {
             CORE_CONFIG.sessionCounter++;
-            setTimeout(listenAndAnalyzeRoom, 2000);
+            setTimeout(listenAndAnalyzeRoom, 3000);
         }
     }, humanDelay);
 }
 
-// بدء التشغيل الفوري والحيوي للعقدة الإنتاجية
 listenAndAnalyzeRoom();
