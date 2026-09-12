@@ -1,0 +1,34 @@
+name: Run Advanced FLOP Miner (Script 2 Optimization)
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # تشغيل تلقائي دوري كل ساعة للمحافظة على نشاط عقدتك وحصد أرباح الـ H100
+    - cron: '0 * * * *'
+  workflow_dispatch: # زر التشغيل اليدوي المباشر من الموقع
+
+jobs:
+  run-advanced-miner:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install Project Dependencies
+      run: |
+        npm install
+
+    - name: Execute Production Node V5
+      env:
+        # إبقاء الروابط والبيانات آمنة ومحمية في الخلفية
+        TECHNOCORE_URL: "https://technocore.chat"
+        MY_SECRET_SEED: ${{ secrets.TECHNOCORE_SIGNING_KEY }}
+      run: |
+        npm start
